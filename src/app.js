@@ -1,32 +1,15 @@
-class Drone {
-  constructor(id, name) {
-    this._id = id;
-    this._name = name;
-  }
+import {Car} from './classes/car.js';
+import {Drone} from './classes/drone.js';
+import {fleet} from './fleet-data.js';
+import {FleetDataService} from './services/fleet-data-service.js';
 
-  get id() {
-    return this._id;
-  }
+let dataService = new FleetDataService();
+dataService.loadData(fleet);
 
-  set id(value) {
-    this._id = value;
-  }
+// for (let car of dataService.cars) {
+//   console.log(car.license);
+// }
 
-  get name() {
-    return this._name;
-  }
-
-  static getCompany() {
-    console.log(`id: ${this.id}`);
-  }
-
-  fly() {
-    console.log(`Drone ${this.id} is flying`);
-  }
+for (let error of dataService.errors) {
+  console.log(error.message);
 }
-
-let drone = new Drone('A123', 'flyer');
-drone.id = 'B456';
-
-console.log(`Drone - ${drone.id} : ${drone.name}`);
-
