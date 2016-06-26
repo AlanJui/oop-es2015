@@ -6,10 +6,20 @@ import {FleetDataService} from './services/fleet-data-service.js';
 let dataService = new FleetDataService();
 dataService.loadData(fleet);
 
+let cars = dataService.filterCarsByMake('Uber');
+for (let car of cars)
+  console.log(`${car.license} is made by ${car.make}`);
+
+// let car = dataService.getCarByLicense('AT99001');
+// console.log(car);
+
+
+
 // for (let car of dataService.cars) {
 //   console.log(car.license);
 // }
 
-for (let error of dataService.errors) {
-  console.log(error.message);
-}
+// for (let error of dataService.errors) {
+//   console.log(error.message);
+// }
+

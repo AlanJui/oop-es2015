@@ -43,6 +43,26 @@ export class FleetDataService {
     return null;
   }
 
+  getCarsSortedByLicense() {
+    return this.cars.sort(function (car1, car2) {
+      if (car1.license < car2.license) return -1;
+      if (car1.license > car2.license) return 1;
+      return 0;
+    });
+  }
+
+  getCarByLicense(license) {
+    return this.cars.find(function (car) {
+      return car.license === license;
+    });
+  }
+
+  filterCarsByMake(filter) {
+    return this.cars.filter(car => {
+      return car.make.indexOf(filter) >= 0;
+    });
+  }
+
   loadDrone(drone) {
     let d = new Drone(drone.license, drone.model, drone.latLong);
     d.airTimeHours = drone.airTimeHours;
